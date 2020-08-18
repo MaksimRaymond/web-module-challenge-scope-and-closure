@@ -27,11 +27,12 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ * let count = 0 is in the global scope in counter 2. in counter1 it is inside the function.
  * 2. Which of the two uses a closure? How can you tell?
+ * Counter 1 would be the closure since fucntion counter is nested inside fucntion counterMaker.
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ * Counter1 code would be more preferrable when you are trying to make it harder to access to access that certain function/information. counrer2 is better when you dont have the need to privatize info.
 */
 
 // counter1 code
@@ -56,11 +57,13 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+return Math.round(Math.random() * 3)
 }
+
+console.log(inning());
+
+
 
 /* Task 3: finalScore()
 
@@ -74,13 +77,21 @@ finalScore(inning, 9) might return:
   "Away": 5,
 }
 
-*/ 
+*/
+  
+  function finalScore(inning, num){
+ 
+ 
+    let obj = {
+    Home: inning()*num,
+    Away: inning()*num,
+    }
+  return obj;
+  }
+  console.log(finalScore(inning, 9))
 
-function finalScore(/*code Here*/){
 
-  /*Code Here*/
 
-}
 
 /* Task 4: 
 
@@ -103,8 +114,31 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+
+
+function inning(){
+  return (Math.floor(Math.random()* 3))
 }
+
+function getInningScore(cb1,inn){
+  let scores = [];
+  for (let i = 0; i < inn; i++){
+    scores.push ({'home': cb1(), 'away': cb1()});
+  }
+  return (scores);
+}
+console.log(getInningScore(inning,9));
+
+
+
+function scoreboard(cb1, cb2, inn) {
+ scores = cb2(cb1, inn)
+ for (i = 1; i < inn; i ++){
+   console.log(`Inning ${i+1}: ${scores["home"][i]} - ${scores["away"][i]}`)
+ }
+ console.log(`Final Score: ${scores.away.reduce} - ${scores.home.reduce}`)
+}
+
+scoreboard(inning, getInningScore, 9);
 
 
